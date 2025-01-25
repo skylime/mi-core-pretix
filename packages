@@ -1,0 +1,23 @@
+py312-pip
+py312-wheel
+py312-setuptools
+py312-maturin
+
+openssl
+libffi
+libxml2
+libxslt
+enchant2
+gettext
+
+py312-Pillow
+nodejs
+
+# moved to postinit
+#rust
+#build-essential
+#py311-gunicorn
+
+nginx
+redis
+postgresql15-server

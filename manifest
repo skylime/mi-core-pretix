@@ -1,0 +1,8 @@
+name="core-pretix"
+organization="SkyLime"
+brand="Instance"
+version="24.4.0"
+description="Base core.io image"
+homepage="https://github.com/skylime/mi-core-base"
+users="root admin"
+base="8e735415-2575-4c0f-92bc-d6f2f59bdef1"

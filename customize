@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+
+PATH=/opt/local/gnu/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin
+
+# Munin plugins
+MUNIN_PLUGINS="
+"
+
+# Exit if any commands fail
+set -o errexit
+
+echo "* Remove used pgsql stuff from base"
+rm -rf /var/pgsql/*
+
+echo "* Create pretix user"
+groupadd pretix
+useradd -m -d /opt/pretix \
+    -g pretix \
+    pretix
+
+echo "* Inital setup venv for pretix"
+sudo -u pretix \
+    python3 -m venv /opt/pretix/venv
+
+echo "* Activate munin plugins"
+/opt/core/bin/munin-node-plugins ${MUNIN_PLUGINS}
+
+echo "* Cleanup home/admin because of delegate dataset usage"
+rm -rf /home/admin/.[^.]*
+
+echo "* Cleaning up"
+rm -rf /root/*
+sm-prepare-image -y
